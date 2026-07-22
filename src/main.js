@@ -154,11 +154,11 @@ function initMap() {
     }).addTo(map);
   }
 
-  // Click on any part of the map panel navigates to the Travel Log
+  // Click on any part of the map panel navigates directly to the Travel Log
   const mapPanel = document.getElementById('map-click-target');
   if (mapPanel) {
     mapPanel.addEventListener('click', () => {
-      window.open('https://travellog.jaclar.net', '_blank');
+      window.location.href = 'https://travellog.jaclar.net';
     });
   }
 }

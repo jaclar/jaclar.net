@@ -45,7 +45,10 @@
               <span class="dot green"></span>
             </div>
             <span class="terminal-title">lars@samurai:~/introduction.md</span>
-            <button id="skip-typing-btn" class="skip-btn" title="Show full text immediately">Fast Forward ⚡</button>
+            <button id="skip-typing-btn" class="skip-btn" title="Show full text immediately">
+              <span class="btn-text-desktop">Fast Forward ⚡</span>
+              <span class="btn-text-mobile">FF ⚡</span>
+            </button>
           </div>
           <div class="terminal-body">
             <div id="typing-container" class="typing-content" aria-live="polite">
@@ -55,7 +58,14 @@
           </div>
         </section>
 
-        <footer class="site-footer">
+        <!-- Mobile Scroll Indicator Line Triangle (~30% terminal width) -->
+        <div class="scroll-indicator-mobile" aria-hidden="true">
+          <svg viewBox="0 0 100 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="scroll-chevron-svg">
+            <path d="M4 3 L50 15 L96 3" stroke="#64748b" stroke-opacity="0.4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <footer class="site-footer desktop-footer">
           <p>Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a> &bull; 2026 Lars Jacob &mdash; jaclar.net llc</p>
         </footer>
       </main>
@@ -69,6 +79,11 @@
           <span>Live Track: <strong>S/V Samurai</strong> &nearr;</span>
         </div>
       </aside>
+
+      <!-- Mobile-only Footer below Map -->
+      <footer class="site-footer mobile-footer">
+        <p>Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a> &bull; 2026 Lars Jacob &mdash; jaclar.net llc</p>
+      </footer>
 
     </div>
 
@@ -93,7 +108,7 @@
             <h3 class="category-title">APPS</h3>
             <ul class="app-list">
               <li>
-                <a href="https://travellog.jaclar.net" target="_blank" rel="noopener noreferrer" class="app-card">
+                <a href="https://travellog.jaclar.net" class="app-card">
                   <div class="app-icon">⛵</div>
                   <div class="app-info">
                     <div class="app-name-row">
