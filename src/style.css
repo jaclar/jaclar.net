@@ -79,6 +79,9 @@ html, body {
   height: 110px;
   flex-shrink: 0;
   animation: hoverFloat 4s ease-in-out infinite alternate;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .avatar-glow {
@@ -90,6 +93,9 @@ html, body {
   filter: blur(12px);
   z-index: 1;
   animation: glowPulse 4s ease-in-out infinite alternate;
+  will-change: transform, opacity, filter;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .avatar-img {
@@ -101,6 +107,9 @@ html, body {
   border: 3px solid rgba(255, 255, 255, 0.8);
   box-shadow: var(--shadow-card), 0 0 20px rgba(0, 0, 0, 0.6);
   z-index: 2;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Hover Animation for Circle Avatar */
