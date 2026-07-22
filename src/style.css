@@ -1,0 +1,682 @@
+/* Design System & Root Variables */
+:root {
+  --bg-primary: #080b11;
+  --bg-secondary: #0f1420;
+  --bg-card: rgba(18, 24, 38, 0.85);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(16, 185, 129, 0.4);
+  
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --text-code: #f1f5f9;
+  
+  /* Accent System: Green = Primary, Light Blue = Secondary */
+  --accent-primary: #10b981;
+  --accent-secondary: #38bdf8;
+  --accent-cyan: #38bdf8;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-purple: #a855f7;
+  
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --shadow-glow: 0 0 35px rgba(16, 185, 129, 0.2);
+  --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Site Container Layout */
+.site-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+/* Left Panel: Content & Terminal */
+.content-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 3rem;
+  z-index: 10;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Header Section */
+.header-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-shrink: 0;
+}
+
+/* Hovering Circle Profile Picture */
+.avatar-container {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  animation: hoverFloat 4s ease-in-out infinite alternate;
+}
+
+.avatar-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-emerald));
+  opacity: 0.45;
+  filter: blur(12px);
+  z-index: 1;
+  animation: glowPulse 4s ease-in-out infinite alternate;
+}
+
+.avatar-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-card), 0 0 20px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+/* Hover Animation for Circle Avatar */
+@keyframes hoverFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.3deg);
+  }
+  100% {
+    transform: translateY(-4px) rotate(-1.3deg);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    opacity: 0.3;
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 0.65;
+    filter: blur(16px);
+  }
+}
+
+.header-titles .user-name {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 30%, var(--text-muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.header-titles .user-subtitle {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.badge-accent {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #34d399;
+}
+
+/* Terminal Container - Maximized Vertical Height */
+.terminal-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.terminal-header {
+  background: rgba(10, 14, 24, 0.9);
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.dot.red { background-color: #ef4444; }
+.dot.yellow { background-color: #f59e0b; }
+.dot.green { background-color: #10b981; }
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  letter-spacing: 0.03em;
+}
+
+.skip-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.skip-btn:hover {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+  border-color: var(--border-accent);
+}
+
+/* Terminal Body - Monospace Light Typing with Internal Scroll */
+.terminal-body {
+  padding: 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--text-code);
+  line-height: 1.75;
+  font-weight: 300;
+  position: relative;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  scroll-behavior: smooth;
+}
+
+.terminal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.terminal-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.typing-content {
+  height: auto;
+}
+
+.typing-content p {
+  margin-bottom: 1.25rem;
+}
+
+.typing-content p:last-child {
+  margin-bottom: 0;
+}
+
+.typing-content em {
+  color: var(--accent-cyan);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.typing-content strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.typing-content .meta-date {
+  color: var(--accent-emerald);
+  font-size: 0.85rem;
+  display: block;
+  margin-top: 1rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-top: 0.75rem;
+}
+
+/* Flashing Monospace Cursor */
+.terminal-cursor {
+  display: inline-block;
+  color: var(--accent-cyan);
+  font-weight: bold;
+  animation: blink 0.9s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.site-footer {
+  margin-top: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.site-footer a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Right Panel: Map & Gradient Mask Overlay */
+.map-panel {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #06090e;
+}
+
+.map-viewport {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Non-animated Gradient Mask Overlay for Map blending seamlessly into the dark theme */
+.map-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: 
+    linear-gradient(to right, var(--bg-primary) 0%, rgba(8, 11, 17, 0.85) 12%, rgba(8, 11, 17, 0.3) 35%, transparent 60%),
+    linear-gradient(to bottom, var(--bg-primary) 0%, transparent 12%, transparent 88%, var(--bg-primary) 100%),
+    radial-gradient(ellipse at center, transparent 40%, rgba(8, 11, 17, 0.6) 100%);
+}
+
+.map-badge {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 10;
+  background: rgba(10, 14, 24, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  padding: 0.6rem 1.1rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.pulse-indicator {
+  width: 9px;
+  height: 9px;
+  background-color: var(--accent-emerald);
+  border-radius: 50%;
+  position: relative;
+}
+
+.pulse-indicator::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background-color: var(--accent-emerald);
+  opacity: 0.7;
+  animation: pulseRing 2s ease-out infinite;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Custom Leaflet Dark Map Tweaks */
+.leaflet-container {
+  background: #080b11 !important;
+  font-family: var(--font-sans) !important;
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: var(--shadow-card) !important;
+  margin-right: 1.5rem !important;
+  margin-top: 1.5rem !important;
+}
+
+.leaflet-control-zoom a {
+  background-color: rgba(15, 20, 32, 0.9) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-color) !important;
+  backdrop-filter: blur(8px);
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: rgba(56, 189, 248, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(8, 11, 17, 0.7) !important;
+  color: var(--text-dim) !important;
+  backdrop-filter: blur(4px);
+}
+
+.leaflet-control-attribution a {
+  color: var(--accent-cyan) !important;
+}
+
+/* Route Polyline Glowing Effect */
+.gpx-route-glow {
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.8));
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .site-container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .content-panel {
+    max-height: none;
+    padding: 2rem 1.5rem;
+  }
+  
+  .map-panel {
+    height: 450px;
+  }
+  
+  .map-gradient-overlay {
+    background: 
+      linear-gradient(to bottom, var(--bg-primary) 0%, transparent 25%, transparent 75%, var(--bg-primary) 100%),
+      radial-gradient(ellipse at center, transparent 40%, rgba(8, 11, 17, 0.6) 100%);
+  }
+}
+
+/* Top Right Hamburger Menu Button */
+.menu-toggle-btn {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(15, 20, 32, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-toggle-btn:hover {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+  transform: scale(1.05);
+}
+
+.menu-toggle-btn:hover .bar {
+  background-color: var(--accent-emerald);
+}
+
+.menu-toggle-btn .bar {
+  width: 20px;
+  height: 2px;
+  background-color: var(--text-main);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+/* Navigation Overlay & Drawer */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-overlay.active {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 9, 14, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.nav-drawer {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  height: 100%;
+  background: rgba(12, 17, 29, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: -15px 0 35px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  z-index: 2001;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-overlay.active .nav-drawer {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.drawer-title {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.menu-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.menu-close-btn:hover {
+  color: var(--accent-emerald);
+}
+
+.menu-category {
+  margin-bottom: 2rem;
+}
+
+.category-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent-emerald);
+  margin-bottom: 1rem;
+}
+
+.app-list {
+  list-style: none;
+}
+
+.app-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.95rem 1.15rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.app-card:hover {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+  transform: translateY(-2px);
+}
+
+.app-icon {
+  font-size: 1.5rem;
+}
+
+.app-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.app-name {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.external-arrow {
+  color: #34d399;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+.app-card:hover .external-arrow {
+  transform: translate(2px, -2px);
+}
+
+.app-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.drawer-footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.domain-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+/* Non-interactive Map Click Target Styling */
+.map-panel {
+  cursor: pointer !important;
+}
+
+.map-viewport {
+  pointer-events: none !important; /* Disable all internal map dragging/zooming */
+}
+
+.map-badge {
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.map-panel:hover .map-badge {
+  border-color: var(--border-accent);
+  transform: scale(1.04);
+}

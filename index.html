@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lars Jacob — Software Engineer &amp; Sailor</title>
+    <meta name="description" content="Personal site of Lars Jacob: software engineer, adventurer, and sailor aboard S/V Samurai." />
+    
+    <!-- Google Fonts: JetBrains Mono (coding monospace) & Outfit (headers) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app" class="site-container">
+      
+      <!-- Left Column: Content, Floating Avatar, Monospace Typing Intro -->
+      <main class="content-panel">
+        <header class="header-section">
+          <div class="avatar-container">
+            <div class="avatar-glow"></div>
+            <img src="/profile.jpeg" alt="Lars Jacob Profile Picture" class="avatar-img" />
+          </div>
+          <div class="header-titles">
+            <h1 class="user-name">Lars Jacob</h1>
+            <p class="user-subtitle">
+              <span class="badge">S/V Samurai</span>
+              <span class="badge badge-accent">Buenos Aires &rarr; Caribbean</span>
+            </p>
+          </div>
+        </header>
+
+        <!-- Monospace Coding Terminal Section -->
+        <section class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="terminal-title">lars@samurai:~/introduction.md</span>
+            <button id="skip-typing-btn" class="skip-btn" title="Show full text immediately">Fast Forward ⚡</button>
+          </div>
+          <div class="terminal-body">
+            <div id="typing-container" class="typing-content" aria-live="polite">
+              <!-- Animated text will render here -->
+            </div>
+            <span id="cursor" class="terminal-cursor">█</span>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <p>Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a> &bull; 2026 Lars Jacob &mdash; jaclar.net llc</p>
+        </footer>
+      </main>
+
+      <!-- Right Column: Interactive Map with Gradient Fade Mask -->
+      <aside class="map-panel" id="map-click-target" title="Click to open Travel Log (travellog.jaclar.net)">
+        <div class="map-gradient-overlay"></div>
+        <div id="map" class="map-viewport"></div>
+        <div class="map-badge">
+          <span class="pulse-indicator"></span>
+          <span>Live Track: <strong>S/V Samurai</strong> &nearr;</span>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Top Right Hamburger Menu Button -->
+    <button id="menu-toggle-btn" class="menu-toggle-btn" aria-label="Toggle Navigation Menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <!-- Navigation Drawer Overlay -->
+    <div id="nav-overlay" class="nav-overlay">
+      <div class="nav-backdrop" id="nav-backdrop"></div>
+      <div class="nav-drawer">
+        <div class="drawer-header">
+          <span class="drawer-title">Menu</span>
+          <button id="menu-close-btn" class="menu-close-btn" aria-label="Close Menu">&times;</button>
+        </div>
+        
+        <div class="drawer-content">
+          <div class="menu-category">
+            <h3 class="category-title">APPS</h3>
+            <ul class="app-list">
+              <li>
+                <a href="https://travellog.jaclar.net" target="_blank" rel="noopener noreferrer" class="app-card">
+                  <div class="app-icon">⛵</div>
+                  <div class="app-info">
+                    <div class="app-name-row">
+                      <span class="app-name">Travel Log</span>
+                      <span class="external-arrow">&nearr;</span>
+                    </div>
+                    <span class="app-desc">S/V Samurai Voyage &amp; Passages</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="drawer-footer">
+          <span class="domain-tag">jaclar.net</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leaflet & Leaflet-GPX scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
